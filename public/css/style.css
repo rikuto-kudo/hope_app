@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+/*共通部分---------------------------------------------------------------------------*/
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YUGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    line-height: 1.7;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* header ------------------------------------------------------------------------*/
+.nav-menu, .nav-information {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    margin-top: 34px;
+    list-style: none;
+    display: flex;
+    
+}
+
+.nav-menu li {
+    margin-left: 34px;
+}
+
+.nav-information li {
+    margin-right: 34px;
+}
+
+.nav-menu a, .nav-information a {
+    color: black;
+}
+
+.nav-menu a:hover, .nav-information a:hover {
+    color: red;
+}
+
+.nav-all {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-header{
+    background-color: white;
+}
+
+/* --------------------------------------------------------- */
+
+/* body */
+.big-bg {
+    background-image: url(../images/27424372.jpg);
+    /*background-image: url(../images/28213020.jpg);
+    background-image: url(../images/DSC_1626.jpg);*/
+    background-size: cover;
+
+}
+
+/* SEARCH----------------------------------------------------- */
+.bg {
+    background-color: greenyellow;
+}
+
+.hosname {
+    color: aqua;
+    text-align: center;
+    margin-bottom: 20px;
+  
+}
+
+.form-area {
+        display: flex;
+        justify-content: center;
+}
+
+.form-area p, .form-area select {
+    margin: 10px 50px;
+}
+
+.search-bg {
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border: none;
+    border-radius: 10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.key-botton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-key {
+    width: 400px;
+    height: 50px;
+    border: 1px solid #3498db; 
+    padding: 5px;
+    margin: 50px;
+}
+
+.search-botton {
+    width: 200px;
+    height: 50px;
+    background-color: aquamarine;
+    border: none;
+    border-radius: 30%;
+    top: 50%;
+    left: 50%;
+}
+
+
+.form-prefectures {
+    background-color: blueviolet;
+    width: 170px;
+    height: 170px;
+    margin-right: 50px;
+    border: none;
+    border-radius: 10%;
+    top: 50%;
+    left: 50%;
+    
+}
+
+.form-municipalities {
+    background-color: red;
+    width: 170px;
+    height: 170px;
+    margin-left: 50px;
+    border: none;
+    border-radius: 10%;
+    top: 50%;
+    left: 50%;
+
+}
+
+/* login --------------------------------------------------------*/
+.appname {
+    font-size: 60px;
+    color: aqua;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-id p, .login-pass p{
+    color: black;
+    font-size: 20px;
+    margin-right: 15px;
+    background-color: blue;
+    
+}
+
+.login-id, .login-pass {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    
+}
+
+.input-id, .input-pass {
+    border: 1px solid #3498db; 
+}
+
+.login-submit {
+    text-align: center;
+    background-color: blueviolet;   
+}
+
+/*.login-botton {
+    
+}*/
+
+
+
