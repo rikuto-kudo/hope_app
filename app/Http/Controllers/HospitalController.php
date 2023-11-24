@@ -10,6 +10,6 @@ class HospitalController extends Controller
     //
     public function index(Hospital $hospital)
     {
-        return $hospital->get();
+        return view('hospital.index')->with(['hospitals' => $hospital->get()]);
     }
 }

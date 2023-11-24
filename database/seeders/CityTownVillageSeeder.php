@@ -32,5 +32,10 @@ class CityTownVillageSeeder extends Seeder
         DB::table('city_town_villages')->insert([
             'name' => '北区'
         ]);
+        
+        //11/23日追加分
+        /*DB::table('city_town_villages')->insert([
+            'name' => '川越市'
+        ]);*/
     }
 }
