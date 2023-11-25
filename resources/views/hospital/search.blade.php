@@ -1,4 +1,3 @@
-<? php dd($areas) ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
@@ -32,67 +31,40 @@
 
     <div class="search-bg">
         <h1 class="hosname">病院検索</h1>
-        <form class="form "action="">
-            <div class="form-area">
-                @dump($areas)
-                <div class="form-prefectures">
-                    <p>エリア</p>
-                    <select name="prefecture" class="area">
-                        <option hidden>都道府県</option>
-                            @foreach($areas as $area)
-                                <option value="{{ $area->id }}" class="select" data-pre-id={{ $area->id }}>
-                                    {{ $area->name }}
-                                </option>
-                            @endforeach
-                    </select>    
-                </div>
-            </div>
+        <form>
+            <label for="area">エリア</label>
+            <select id="area" name="area">
+                @foreach ($areas as $area)
+                    <option value="{{ $area->id }}">{{ $area->name }}</option>
+                @endforeach
+            </select>
             
-            {{-- Add this debug code --}}
-            <!--@dump($city_town_villages)-->
-            <!--<div class="form-municipalities">-->
-            <!--    <p>市町村</p>-->
-            <!--    <select class="city-area none"name="municipality">-->
-            <!--        <option hidden>市町村</option>-->
-            <!--        @foreach($city_town_villages as $city_town_village)-->
-            <!--            <option class="none city" value="{{ $city_town_village->area_id }}" data-city-id={{ $city_town_village->city }}>-->
-            <!--                {{ $city_town_village->name }}-->
-            <!--            </option>-->
-            <!--        @endforeach-->
-            <!--    </select>-->
-            <!--</div>-->
-                
-                
-            
-            <div class="key-botton">
-                <input type="text" class="form-key" name="keyword" placeholder="検索キーワードを入力">
-                <input type="submit" class="search-botton" value="検索">
-            </div>
+            <label for="city_town_village">市町村</label>
+            <select id="city_town_village" name="city_town_village"></select>
         </form>
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    const area = document.querySelector('.area');
-    const allCity = [...document.querySelectorAll('.city')];
-
-    area.addEventListener('change', (e) => {
-        const cityArea = document.querySelector('.city-area');
-        console.log(cityArea);
-        cityArea.classList.add('block');
-        cityArea.classList.remove('none');
-
-        const selectedPreId = e.target.value;
-
-        for (let i = 0; i < allCity.length; i++) {
-            if (selectedPreId === allCity[i].value) {
-                allCity[i].classList.remove('none');
-                allCity[i].classList.add('block');
-            } else {
-                allCity[i].classList.add('none');
-                allCity[i].classList.remove('block');
-            }
-        }
-    });
+        $(document).ready(function () {
+            $('#area').change(function () {
+                var areaId = $(this).val();
+    
+                $.ajax({
+                    url: '/getCityTownVillages',
+                    type: 'GET',
+                    data: { area: areaId },
+                    success: function (data) {
+                        var options = '<option value="">選択してください</option>';
+                        for (var i = 0; i < data.city_town_villages.length; i++) {
+                            options += '<option value="' + data.city_town_villages[i].id + '">' +
+                                data.city_town_villages[i].name + '</option>';
+                        }
+                        $('#city_town_village').html(options);
+                    }
+                });
+            });
+        });
     </script>
 
   </body>
