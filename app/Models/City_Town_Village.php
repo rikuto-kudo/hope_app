@@ -9,6 +9,8 @@ class City_Town_Village extends Model
 {
     use HasFactory;
     
+    protected $table = 'city_town_villages';
+    
     public function areas()
     {
         return $this->hasMany(Area::class, 'area_id', 'id');

@@ -9,8 +9,11 @@ class Area extends Model
 {
     use HasFactory;
     
+    protected $table = 'areas';
+    
     public function city_town_village()
     {
+         
         return $this->belongsTo(City_Town_Village::class, 'area_id', 'id');
     }
     

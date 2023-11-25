@@ -19,7 +19,7 @@ class SearchController extends Controller
                 throw new \Exception('Default area not found.');
             }*/
             $areas = Area::all();
-            //dd($areas);
+            //ddd($areas);
             $city_town_villages = $defaultArea->city_town_village ?? collect();
             
             
