@@ -14,7 +14,8 @@ class Area extends Model
     public function city_town_village()
     {
          
-        return $this->belongsTo(City_Town_Village::class, 'area_id', 'id');
+        //return $this->belongsTo(City_Town_Village::class, 'area_id', 'id');
+        return $this->hasMany(City_Town_Village::class);
     }
     
 }

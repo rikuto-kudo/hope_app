@@ -13,6 +13,7 @@ class City_Town_Village extends Model
     
     public function areas()
     {
-        return $this->hasMany(Area::class, 'area_id', 'id');
+        //return $this->hasMany(Area::class, 'area_id', 'id');
+        return $this->belongsTo(Area::class);
     }
 }
