@@ -54,5 +54,13 @@ class SearchController extends Controller
             //return response()->json(['error' => 'Failed to fetch city town villages'], 500);
         }
     }
+    
+    public function searchResult(Request $request)
+    {
+        $areaId = $request->input('area');
+        $cityTownVillageId = $request->input('city_town_village');
+        
+        $area = Area::where('');
+    }
 
 }
