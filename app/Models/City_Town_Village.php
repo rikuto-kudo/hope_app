@@ -11,9 +11,11 @@ class City_Town_Village extends Model
     
     protected $table = 'city_town_villages';
     
-    public function areas()
+    public function area()
     {
         //return $this->hasMany(Area::class, 'area_id', 'id');
         return $this->belongsTo(Area::class);
     }
+    
+    public function
 }

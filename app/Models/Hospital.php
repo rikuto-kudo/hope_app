@@ -10,4 +10,9 @@ class Hospital extends Model
     use HasFactory;
     
     protected $hospital = 'hospitals';
+    
+    public function city_town_village()
+    {
+        return $this->belongsTo(City_Town_Village::class);
+    }
 }

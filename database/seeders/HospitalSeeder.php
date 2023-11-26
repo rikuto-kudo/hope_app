@@ -25,6 +25,7 @@ class HospitalSeeder extends Seeder
             'address' => '群馬県伊勢崎市田中町892-1',
             'phone_number' => '0270-27-5771',
             'field' => '神経科',
+            'url' => 'https://acorn-vet.com/',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
             'area_id' => 1
@@ -38,6 +39,7 @@ class HospitalSeeder extends Seeder
             'address' => '埼玉県川口市赤井二丁目9-16',
             'phone_number' => '048-284-0837',
             'field' => '皮膚科',
+            'url' => 'https://tsuru-ah.com/',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
             'area_id' => 2
@@ -51,6 +53,7 @@ class HospitalSeeder extends Seeder
             'address' => '神奈川県相模原市南区南台4-15-2',
             'phone_number' => '042-702-1341',
             'field' => '眼科',
+            'url' => 'http://www.7651122.com/index.html',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
             'area_id' => 3
@@ -64,6 +67,7 @@ class HospitalSeeder extends Seeder
             'address' => '東京都北区豊島1-22-9',
             'phone_number' => '03-3913-2500',
             'field' => '泌尿器科',
+            'url' => 'https://www.oji-pet.jp/',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
             'area_id' => 4

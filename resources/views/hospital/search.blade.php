@@ -41,7 +41,13 @@
             
             <label for="city_town_village">市町村</label>
             <select id="city_town_village" name="city_town_village"></select>
+            
+            <button id="searchButton">検索</button>
         </form>
+    </div>
+    
+    <div id="searchResult">
+        
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -63,6 +69,20 @@
                         $('#city_town_village').html(options);
                     }
                 });
+            });
+        });
+        
+        $('#searchButton').click(function() {
+            var areaId = $('#areaSelect').val();
+            var cityTownVillageId = $('#cityTownVillageSelect').val();
+            
+            $.ajax({
+                url: '/search',
+                type: 'GET',
+                data: { area: areaId, city: cityTownVillageId },
+                success: function(response) {
+                    $('#searchResult').html(response);
+                }
             });
         });
     </script>
