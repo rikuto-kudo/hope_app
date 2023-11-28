@@ -15,21 +15,40 @@ return new class extends Migration
     {
         Schema::create('hospital_times', function (Blueprint $table) {
             $table->id();
+            
             $table->string('monday_start', 5);
+            
             $table->string('monday_end', 5);
+            
             $table->string('tuesday_start', 5);
+            
             $table->string('tuesday_end', 5);
+            
             $table->string('wednesday_start', 5);
+            
             $table->string('wednesday_end', 5);
+            
             $table->string('thursday_start', 5);
+            
             $table->string('thursday_end', 5);
+            
             $table->string('friday_start', 5);
+            
             $table->string('friday_end', 5);
+            
             $table->string('saturday_start', 5);
+            
             $table->string('saturday_end', 5);
+            
             $table->string('sunday_start', 5);
+            
             $table->string('sunday_end', 5);
+            
+            $table->unsignedBigInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
+            
             $table->timestamps();
+            
             $table->softDeletes();
         });
     }

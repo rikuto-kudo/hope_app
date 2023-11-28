@@ -9,9 +9,26 @@ class Area extends Model
 {
     use HasFactory;
     
-    public function city_town_village()
+    protected $table = 'areas';
+    
+    public function getHospitals()
     {
-        return $this->belongsTo(City_Town_Village::class, 'area_id', 'id');
+        $hospiltas = Area::pluck('name', 'id');
+        
+        return $hospiltas;
+    }
+    
+    /*public function city_town_villages()
+    {
+         
+        //return $this->belongsTo(City_Town_Village::class, 'area_id', 'id');
+        return $this->hasMany(City_Town_Village::class);
+        //return $this->hasMany(City_Town_Village::class, 'area_id');
+    }*/
+    
+    public function hospitals()
+    {
+        return $this->hasMany(Hospital::class);
     }
     
 }

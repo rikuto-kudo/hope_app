@@ -9,5 +9,16 @@ class Hospital extends Model
 {
     use HasFactory;
     
-    protected $hospital = 'hospitals';
+    protected $table = 'hospitals';
+    
+    /*public function city_town_village()
+    {
+        //return $this->belongsTo(City_Town_Village::class, 'city_town_village_id');
+        return $this->belongsTo(City_Town_Village::class);
+    }*/
+    
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

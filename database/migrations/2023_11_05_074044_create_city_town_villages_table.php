@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('city_town_villages', function (Blueprint $table) {
             $table->id();
+            
             $table->string('name', 20);
+            
+            $table->$table->unsignedBigInteger('area_id');
+            $table->foreign('area_id')->references('id')->on('areas');
         });
     }
 

@@ -4,51 +4,93 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use App\Models\Area;
 use App\Models\City_Town_Village;
+use App\Models\Hospital;
 
 class SearchController extends Controller
 {
-    public function prefecture_city_town_village_search()
-    {
-        try {
-            $defaultArea = Area::where('name', '群馬県')->first();
-            $defaultCity_Town_Village = City_Town_Village::where('name', '伊勢崎市')->first();
     
-            /*if (!$defaultArea) {
-                throw new \Exception('Default area not found.');
-            }*/
+    /*==================================
+    検索フォームのみ表示(getAreas　getCityTownVillages)
+    ==================================*/
+    //　/searchにアクセスした際に表示される内容
+    public function getAreas()
+    {
             $areas = Area::all();
-            //dd($areas);
-            $city_town_villages = $defaultArea->city_town_village ?? collect();
-            
-            
-            return view('hospital.search', compact('areas', 'city_town_villages', 'defaultArea', 'defaultCity_Town_Village'));
-        } catch (\Exception $e) {
-            /*Log::error('Error fetching city town villages: ' . $e->getMessage());
-            Log::error($e->getTrace());
-            return response()->json(['error' => 'Failed to fetch city town villages'], 500);*/
-            }
-    } 
 
-    public function getCity_town_villages(Request $request)
-    {
-        try {
+            return view('hospital.search', compact('areas'));
+    } 
+    
+    //エリアに付随する市町村の取得
+    public function getCityTownVillages(Request $request)
+    {       
             $areaId = $request->input('area');
-            //dd($areaId);
-            if ($areaId) {
-                $city_town_villages = City_Town_Village::where('id', $areaId)->first()->areas ?? collect();
-            } else {
-                $city_town_villages = collect();
-            }
+            $city_town_villages = City_Town_Village::where('area_id', $areaId)->get();
+            //$city_town_villages = City_Town_Village::where('area_id', $request->area)->get();
+            return response()->json(['city_town_villages' => $city_town_villages]);
+    }
     
-            //return response()->json(['city_town_villages' => $city_town_villages]);
-        } catch (\Exception $e) {
-            //Log::error('Error fetching city town villages: ' . $e->getMessage());
-            //Log::error($e->getTrace());
+    /*public function getCity_town_villages($areaId)
+    {
+        //エリアに付随する市町村の取得
+        $city_town_villages = City_Town_Village::where('area_id', $areaId)->pluck('name', 'id');
+        
+        return response()->json($city_town_villages);
+    }*/
     
-            //return response()->json(['error' => 'Failed to fetch city town villages'], 500);
+    public function showHospitals (Request $request)
+    {
+        $hospital = new Hospital;
+        $hospitals = $hospital->getHospitals()->get();
+        
+        return view('hospital.search', compact('hospitals'));
+    }
+    
+    //　検索ボタンを押した後に実行され、病院情報を返す
+    public function resultHospitals(Request $request)
+    {
+        //初期化
+        //$hospitals = [];
+        //formタグのpostから送信されたエリアIDと市町村IDを取得
+        $areaId = $request->input('area_id');
+        $cityTownVillageId = $request->input('city_town_village_id');
+        
+        $hospitals = Hospital::when($areaId, function ($query) use ($areaId) {
+            $query->where('area_id', $areaId);
+        })->when($cityTownVillageId, function ($query) use ($cityTownVillageId) {
+            $query->where('city_town_village_id', $cityTownVillageId);
+        })->get();
+        
+        
+        /*$hospitalsQuery = Hospital::query()->where('area_id', $areaId)->get();
+        
+        if ($cityTownVillageId) {
+            $hospitalsQuery->where('city_town_village_id', $cityTownVillageId);
         }
+        
+        $hospitals = $hospitalsQuery->get();*/
+        
+        //HospitalModelのクエリビルダの作成
+        //$hospitals = Hospital::query();
+        
+        //エリアでの絞り込み
+        /*if ($areaId) {
+            
+            $hospitals->where('area_id', $areaId);
+        }
+        
+        //市町村での絞り込み
+        if ($cityTownVillageId) {
+            
+            $hospitals->where('city_town_village_id', $cityTownVillageId);
+        }*/
+        
+        // ペジネーションを指定し、結果を取得
+        //$hospitals = $hospitals->paginate(1);
+        
+        return view('hospital.result', compact('hospitals'));
     }
 
 }

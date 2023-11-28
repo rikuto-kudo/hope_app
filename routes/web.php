@@ -19,7 +19,7 @@ use App\Http\Controllers\SearchController;
 
 
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -29,11 +29,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';*/
 
+/*-----トップページ-----*/
 Route::get('/', [HospitalController::class, 'index']);
-//Route::get('/register', [RegistrationController::class, 'showRegistrationForm']);
-Route::get('/search', [SearchController::class, 'prefecture_city_town_village_search']);
-Route::get('/getCityTownVillages', [SearchController::class, 'getCity_town_villages']);
-Route::post('/submit', [SearchController::class, 'hospital']);
+
+/*-----検索ページ-----*/
+Route::get('/getAreas', [SearchController::class, 'getAreas'])->name('getAreas');
+Route::get('/getCityTownVillages', [SearchController::class, 'getCityTownVillages'])->name('getCityTownVillages');
+Route::get('/showHospitals', [SearchController::class, 'showHospitals'])->name('showHospitals');
+Route::get('/resultHospitals', [SearchController::class, 'resultHospitals'])->name('resultHospitals');
+//Route::get('/getCityTownVillages/{area}', [SearchController::class, 'getCity_town_villages']);
+//Route::get('/getCityTownVillages', [SearchController::class, 'getCity_town_villages']);
+//Route::post('/searchResult', [SearchController::class, 'searchResult']);
 
