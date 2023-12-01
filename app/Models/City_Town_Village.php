@@ -11,7 +11,7 @@ class City_Town_Village extends Model
 
     protected $table = 'city_town_villages';
     
-    //protected $fillable = ['name', 'area_id'];
+    protected $fillable = ['name', 'area_id'];
 
     public function hospitals()
     {

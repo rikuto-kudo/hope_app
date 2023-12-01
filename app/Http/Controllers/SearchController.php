@@ -76,11 +76,11 @@ class SearchController extends Controller
     }*/
     
     //city_town_villagesテーブルのカラム「name」、「area_id」のデータの変更
-    /*public function hospitalsUpdate()
+    public function hospitalsUpdate()
     {
         Hospital::ColumnDataHospitals();
         
         return 'hospitals updated successfully!';
-    }*/
+    }
 
 }
