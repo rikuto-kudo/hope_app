@@ -13,17 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        //カラムの削除
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('hospitals', function (Blueprint $table) {
             //
-            $table->dropColumn('name');
-        });
-        
-         //カラムの追加
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->softDeletes();
-            $table->string('user_type');
+            $table->string('field', 200)->change();
         });
     }
 
@@ -34,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('hospitals', function (Blueprint $table) {
             //
         });
     }

@@ -10,9 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Philosopher&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
+    <!--JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script src="{{ asset('js/areaCities.js') }}"></script>
+    <script src="{{ asset('js/results.js') }}"></script>
   </head>
   <body class="bg">
     <header class="page-header">
+        
       <nav class="nav-all">
         <ul class="nav-menu">
             <li><a href="{{ url('/getAreas') }}">検索</a></li>
@@ -30,81 +36,36 @@
     </header>
 
     <div class="search-bg">
-        <h1 class="hosname">病院検索</h1>
-        <!--検索フォーム-->
-        <form method="GET" action="{{ route('resultHospitals') }}">
-        <!--<form method="post" id="searchForm">-->
-        <!--<form>-->
+        <h1 class="hospital-name">病院検索</h1>
+        <form id="searchForm" action="{{ route('resultHospitals') }}" method="get">
             @csrf
-            <!--プルダウン「エリア」選択-->
-            <label for="area">エリア</label>
-            <select id="area" name="area">
-                <option value="">選択しない</option>
-                @foreach ($areas as $area)
-                    <option value="{{ $area->id }}">{{ $area->name }}</option>
-                @endforeach
-            </select>
+            <div class="form-areas-municipalities">
+                <div class="form-areas">
+                    <label class="label-name" for="area">エリア</label>
+                    <select id="areas" name="area">
+                        <option id = Kanto-region value="">未選択</option>
+                        @foreach ($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+   
+                <div class="form-municipalities">
+                    <label class="label-name" for="city_town_village">市町村</label>
+                    <select id="city_town_village" name="city_town_village"></select>
+                </div>
+            </div>
             
-            <!--プルダウン「市町村」選択-->
-            <label for="city_town_village">市町村</label>
-            <select id="city_town_village" name="city_town_village"></select>
-            
-            <button type="submit">検索</button>
-            <!--<button id="searchButton" type="button">検索</button>-->
-            <!--<button id="searchButton">検索</button>-->
+            <div class="btn ">
+                <button type="button" id="search-btn">検索</button>
+            </div>
         </form>
     </div>
-    
-    @if(isset($hospitals))
-        <ul>
-            @foreach($hospitals as $hospital)
-                <li>{{ $hospital->name }} - {{ $hospital->address }} - {{ $hospital->phonenumber }} - {{ $hospital->field }} - {{ $hospital->url }}</li>
-            @endforeach
-        </ul>
-    @endif
-    
-    
-    
-    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
-    <script>
-         $(document).ready(function () {
-             $('#area').change(function () {
-                 var areaId = $(this).val();
-                 $.ajax({
-                     url: '/getCityTownVillages',
-                     type: 'GET',
-                     data: { area: areaId },
-                     success: function (data) {
-                         var options = '<option value="">選択してください</option>';
-                         for (var i = 0; i < data.city_town_villages.length; i++) {
-                             options += '<option value="' + data.city_town_villages[i].id + '">' +
-                                 data.city_town_villages[i].name + '</option>';
-                         }
-                         $('#city_town_village').html(options);
-                     }
-                 });
-             });
-         });
-         
-         $('#searchButton').click(function () {
-            var areaId = $('#area').val();
-            var cityTownVillageId = $('#city_town_village').val();
 
-            $.ajax({
-                url: '/searchResult',
-                type: 'GET',
-                //data: { area: areaId, city_town_village: cityTownVillageId, _token: "{{ csrf_token() }}" },
-                data: { area: areaId, city: cityTownVillageId },
-                success: function (response) {
-                    $('#searchResult').html(response);
-                }
-            });
-        });
-        
-        
-    </script>
+    <div id="searchResult">
+            
+    </div>
 
+   
   </body>
 </html>

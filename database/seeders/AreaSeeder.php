@@ -17,9 +17,7 @@ class AreaSeeder extends Seeder
     public function run()
     {
         //
-        //$city_town_village_id = 1;
-        
-        DB::table('areas')->insert([
+        /*DB::table('areas')->insert([
             'name' => '群馬県',
             'city_town_village_id' => 1
         ]);
@@ -37,6 +35,6 @@ class AreaSeeder extends Seeder
         DB::table('areas')->insert([
             'name' => '東京都',
             'city_town_village_id' => 4
-        ]);
+        ]);*/
     }
 }

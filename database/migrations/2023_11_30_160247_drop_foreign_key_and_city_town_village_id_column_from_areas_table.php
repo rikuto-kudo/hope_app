@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('areas', function (Blueprint $table) {
             //
-            $table->string('user_type')->nullable()->change();  
+            $table->dropColumn('city_town_village_id');
         });
     }
 
@@ -26,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('areas', function (Blueprint $table) {
             //
+            $table->unsignedBigInteger('city_town_village_id')->nullable();
         });
     }
 };

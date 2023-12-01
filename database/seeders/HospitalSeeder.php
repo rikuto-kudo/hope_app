@@ -16,8 +16,7 @@ class HospitalSeeder extends Seeder
      */
     public function run()
     {
-        //
-        //$area_id = 1;
+        
         
         DB::table('hospitals')->insert([
             
@@ -31,7 +30,6 @@ class HospitalSeeder extends Seeder
             'city_town_village_id' => 1
         ]);
         
-        //$area_id = 2;
         
         DB::table('hospitals')->insert([
             
@@ -45,7 +43,6 @@ class HospitalSeeder extends Seeder
             'city_town_village_id' => 2
         ]);
         
-        //$area_id = 3;
         
         DB::table('hospitals')->insert([
             
@@ -59,7 +56,6 @@ class HospitalSeeder extends Seeder
             'city_town_village_id' => 3
         ]);
         
-        //$area_id = 4;
         
         DB::table('hospitals')->insert([
             

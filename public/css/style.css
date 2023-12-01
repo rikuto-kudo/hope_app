@@ -25,17 +25,24 @@ img {
     font-size: 1.75rem;
     text-transform: uppercase;
     margin-top: 34px;
+    margin-bottom: 10px;
     list-style: none;
     display: flex;
     
 }
 
+.nav-menu {
+    margin-left: 50px;
+}
+
 .nav-menu li {
-    margin-left: 34px;
+    margin-left: 70px;
+    font-weight: bold;
 }
 
 .nav-information li {
     margin-right: 34px;
+    font-weight: bold;
 }
 
 .nav-menu a, .nav-information a {
@@ -43,7 +50,7 @@ img {
 }
 
 .nav-menu a:hover, .nav-information a:hover {
-    color: red;
+    color: skyblue;
 }
 
 .nav-all {
@@ -69,41 +76,74 @@ img {
 /* SEARCH----------------------------------------------------- */
 .bg {
     background-color: greenyellow;
+    
 }
 
-.hosname {
+.hospital-name {
     color: aqua;
     text-align: center;
     margin-bottom: 20px;
-  
+    font-size: 40px;
 }
 
-.form-area {
+.form-areas-municipalities {
         display: flex;
         justify-content: center;
+        
 }
 
-.form-area p, .form-area select {
+.label-name {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.label-name, #areas select {
     margin: 10px 50px;
 }
 
+#areas, #city_town_village {
+    margin-top: 30px;
+}
+
+#city_town_village {
+    margin-right: 100px;
+}
+
+.form-areas-municipalities select {
+    background-color: white;
+}
+
+
+
 .search-bg {
-    width: 800px;
-    height: 500px;
+    width: 1200px;*/
+    height: 300px;
     background-color: white;
     border: none;
-    border-radius: 10%;
+    /*border-radius: 10%;*/
     position: absolute;
-    top: 50%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.key-botton {
+.btn {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 125px; /* 半分のサイズに変更 */
+    margin: 0 auto;
+    padding: 0.45em 1em; /* 半分のサイズに変更 */
+    border: none;
+    border-bottom: solid 2.5px #b3b3b3; /* 半分のサイズに変更 */
+    border-radius: 12.5px; /* 半分のサイズに変更 */
+    background-color: #ee7800;
+    font-weight: 600;
+    font-size: 1em;
+    transition: .5s ease;
 }
+
 
 .form-key {
     width: 400px;
@@ -113,40 +153,126 @@ img {
     margin: 50px;
 }
 
-.search-botton {
-    width: 200px;
-    height: 50px;
-    background-color: aquamarine;
-    border: none;
-    border-radius: 30%;
+#search-btn {
     top: 50%;
     left: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    
 }
 
 
-.form-prefectures {
-    background-color: blueviolet;
+.form-areas {
+    background-color: greenyellow;
     width: 170px;
-    height: 170px;
+    height: 110px;
     margin-right: 50px;
     border: none;
     border-radius: 10%;
     top: 50%;
     left: 50%;
-    
 }
 
 .form-municipalities {
-    background-color: red;
+    background-color: greenyellow;
     width: 170px;
-    height: 170px;
+    height: 110px;
     margin-left: 50px;
     border: none;
     border-radius: 10%;
     top: 50%;
     left: 50%;
-
 }
+
+
+#areas, #city_town_village {
+    margin-left: 50px;
+}
+
+#searchResult {
+    color: black;
+}
+
+#searchResult h2 {
+    width: 1200px;
+    height: 60px;
+    background-color: white;
+    text-align: center;
+    margin-top: 400px;
+    margin-left: 160px;
+    font-size: 40px;
+}
+
+#searchResult p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#mainSize {
+    font-size: 80px;
+}
+/*#resultBg {
+     width: 500px;
+     height: 300px;
+     background-color: white;
+     borderRadius: 15px;
+     display: flex;
+     flex-direction: column;
+}*/
+
+#circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    borderRadius: 50%;
+    border: 1px solid black;
+    
+}
+
+.resultItem {
+    width: 650px;
+    height: 400px;
+    background-color: white;
+    border-radius: 30px;
+    margin: 10px; /* 各項目のマージンを設定 */
+    margin-left: 500px;
+    margin-top: 50px;
+}
+
+/*.pagination {
+    
+}*/
+
+/*.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination a {
+    display: block;
+    padding: 10px;
+    margin: 0 5px;
+    font-size: 16px; 
+    text-decoration: none;
+    color: black;
+    background-color: #ee7800;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #ff9933; 
+}
+
+.pagination .active {
+    background-color: #ff9933;
+    color: white;
+}*/
+
 
 /* login --------------------------------------------------------*/
 .appname {

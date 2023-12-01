@@ -12,32 +12,31 @@
 
   </head>
   <body class="bg">
-    <header class="page-header">
-      <nav class="nav-all">
-        <ul class="nav-menu">
-            <li><a href="{{ url('/search') }}">検索</a></li>
-            <li><a href="message.html">メッセージ</a></li>
-            <li><a href="request.html">診療申請</a></li>
-            <li><a href="bookmark.html">ブックマーク</a></li>
-            <li><a href="community.html">コミュニティ</a></li>   
-        </ul>
-
-        <ul class="nav-information">
-            <li><a href="profile.html">プロフィール</a></li>
-            <li><a href="{{ url('/login') }}">ログイン</a></li> 
-        </ul>
-      </nav>
-    </header>
-    
     <div class="searchResult">
         <h2>検索結果</h2>
-        @foreach ($hospitals as $hospital)
-            <p>{{ $hospital->name }}</p>
-            <p>{{ $hospital->address }}</p>
-            <p>{{ $hospital->phone_number }}</p>
-            <p>{{ $hospital->field }}</p>
-            <hr>
-        @endforeach
+        @if (isset($message))
+          <p>{{ $message }}</p>
+        @else
+            <div id="resultBg">
+                @foreach ($hospitals as $index => $hospital)
+                  <div class="resultItem resultItem{{ $index + 1 }}">
+                    <p id="mainSize">{{ $hospital->name }}</p>
+                    <p class="subSize">{{ $hospital->field }}</p>
+                    <div id="othersSize">
+                      <p>{{ $hospital->address }}</p>
+                      <p>{{ $hospital->phone_number }}</p>
+                      <p><a href="{{ $hospital->url }}" target="_blank">病院のホームページ</a></p>
+                    </div>
+                    
+                    <hr>
+                  </div>
+                @endforeach
+            </div>
+        @endif
     </div>
+    
+    <!--<div class="pagination">-->
+    <!--  {{ $hospitals->links() }}-->
+    <!--</div>-->
   </body>
 </html>

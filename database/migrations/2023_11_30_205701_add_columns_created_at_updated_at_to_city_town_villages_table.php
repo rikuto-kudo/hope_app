@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('city_town_villages', function (Blueprint $table) {
             //
-            $table->string('password', 8)->change();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('city_town_villages', function (Blueprint $table) {
             //
+            $table->dropTimestamps();
         });
     }
 };

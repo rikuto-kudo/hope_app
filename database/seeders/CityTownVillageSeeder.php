@@ -36,10 +36,5 @@ class CityTownVillageSeeder extends Seeder
             'name' => '北区',
             'area_id' => 4
         ]);
-        
-        //11/23日追加分
-        /*DB::table('city_town_villages')->insert([
-            'name' => '川越市'
-        ]);*/
     }
 }
