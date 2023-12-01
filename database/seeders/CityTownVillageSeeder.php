@@ -18,24 +18,23 @@ class CityTownVillageSeeder extends Seeder
     {
         //
         DB::table('city_town_villages')->insert([
-            'name' => '伊勢崎市'
+            'name' => '伊勢崎市',
+            'area_id' => 1
         ]);
         
         DB::table('city_town_villages')->insert([
-            'name' => '川口市'
+            'name' => '川口市',
+            'area_id' => 2
         ]);
         
         DB::table('city_town_villages')->insert([
-            'name' => '相模原市'
+            'name' => '相模原市',
+            'area_id' => 3
         ]);
         
         DB::table('city_town_villages')->insert([
-            'name' => '北区'
+            'name' => '北区',
+            'area_id' => 4
         ]);
-        
-        //11/23日追加分
-        /*DB::table('city_town_villages')->insert([
-            'name' => '川越市'
-        ]);*/
     }
 }

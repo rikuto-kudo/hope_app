@@ -4,55 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\Paginator;
 use App\Models\Area;
 use App\Models\City_Town_Village;
+use App\Models\Hospital;
+
 
 class SearchController extends Controller
 {
-    public function prefecture_city_town_village_search()
-    {
-        try {
-            //$defaultArea = Area::where('name', '群馬県')->first();
-            //$defaultCity_Town_Village = City_Town_Village::where('name', '伊勢崎市')->first();
     
-            /*if (!$defaultArea) {
-                throw new \Exception('Default area not found.');
-            }*/
-            $areas = Area::all();
-            
-            //dd($areas);
-            //$city_town_villages = $defaultArea->city_town_village ?? collect();
-            //dd($city_town_villages);
-            
-            //return view('hospital.search', compact('areas', 'city_town_villages', 'defaultArea', 'defaultCity_Town_Village'));
-            return view('hospital.search', compact('areas'));
-        } catch (\Exception $e) {
-            /*Log::error('Error fetching city town villages: ' . $e->getMessage());
-            Log::error($e->getTrace());
-            return response()->json(['error' => 'Failed to fetch city town villages'], 500);*/
-            }
+    public function getAreas()
+    {
+        $areas = Area::all();
+        
+        return view('hospital.search', compact('areas'));
     } 
 
     public function getCity_town_villages(Request $request)
     {
-        try {
             $areaId = $request->input('area');
             $city_town_villages = City_Town_Village::where('area_id', $areaId)->get();
+            
             return response()->json(['city_town_villages' =>$city_town_villages]);
-            //dd($areaId);
-            /*if ($areaId) {
-                $city_town_villages = City_Town_Village::where('id', $areaId)->first()->areas ?? collect();
-            } else {
-                $city_town_villages = collect();
-            }*/
-    
-            //return response()->json(['city_town_villages' => $city_town_villages]);
-        } catch (\Exception $e) {
-            //Log::error('Error fetching city town villages: ' . $e->getMessage());
-            //Log::error($e->getTrace());
-    
-            //return response()->json(['error' => 'Failed to fetch city town villages'], 500);
-        }
     }
     
     public function searchResult(Request $request)
@@ -62,5 +35,52 @@ class SearchController extends Controller
         
         $area = Area::where('');
     }
+
+    public function getCityTownVillages(Request $request)
+    {
+        $areaId = $request->input('area');
+        $city_town_villages = City_Town_Village::where('area_id', $areaId)->get();
+        return response()->json(['city_town_villages' => $city_town_villages]);
+    }
+
+    public function resultHospitals(Request $request)
+    {
+        $areaId = $request->input('area_id');
+        $cityTownVillageId = $request->input('city_town_village_id');
+
+        $hospitals = Hospital::when($areaId, function ($query) use ($areaId) {
+            $query->where('area_id', $areaId);
+        })->when($cityTownVillageId, function ($query) use ($cityTownVillageId) {
+            $query->where('city_town_village_id', $cityTownVillageId);
+        })->paginate(5);
+        
+         $message = $hospitals->isEmpty() ? '該当する病院が存在していないか、追加が遅れている可能性があります。' : null;
+
+        return view('hospital.result', compact('hospitals', 'message'));
+    }
+    
+    //areasテーブルのカラム「name」のデータの変更
+    /*public function areasUpdate()
+    {
+        Area::changeNameColumnAreas();
+        
+        return 'Areas updated successfully!';
+    }*/
+    
+    //city_town_villagesテーブルのカラム「name」、「area_id」のデータの変更
+    /*public function cityTownVillageUpdate()
+    {
+        City_Town_Village::changeNameColumnCityTownVillages();
+        
+        return 'City_Town_Villages updated successfully!';
+    }*/
+    
+    //city_town_villagesテーブルのカラム「name」、「area_id」のデータの変更
+    /*public function hospitalsUpdate()
+    {
+        Hospital::ColumnDataHospitals();
+        
+        return 'hospitals updated successfully!';
+    }*/
 
 }

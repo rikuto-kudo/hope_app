@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('hospitals', function (Blueprint $table) {
             //
-            $table->string('password', 8)->change();
+            $table->foreign('city_town_village_id')->references('id')->on('city_town_villages');
         });
     }
 
@@ -26,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('hospitals', function (Blueprint $table) {
             //
+            $table->dropForeign(['city_town_village_id']);
         });
     }
 };

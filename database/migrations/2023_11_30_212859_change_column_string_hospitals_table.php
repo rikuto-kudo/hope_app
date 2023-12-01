@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('areas', function (Blueprint $table) {
+        Schema::table('hospitals', function (Blueprint $table) {
             //
-            $table->foreignId('city_town_village_id')->constrained(); 
+            $table->string('field', 200)->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('areas', function (Blueprint $table) {
+        Schema::table('hospitals', function (Blueprint $table) {
             //
         });
     }

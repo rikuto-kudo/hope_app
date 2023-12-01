@@ -15,7 +15,7 @@
     <header class="page-header">
       <nav class="nav-all">
         <ul class="nav-menu">
-            <li><a href="{{ url('/search') }}">検索</a></li>
+            <li><a href="{{ url('/getAreas') }}">検索</a></li>
             <li><a href="message.html">メッセージ</a></li>
             <li><a href="request.html">診療申請</a></li>
             <li><a href="bookmark.html">ブックマーク</a></li>

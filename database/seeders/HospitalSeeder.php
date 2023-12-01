@@ -16,8 +16,7 @@ class HospitalSeeder extends Seeder
      */
     public function run()
     {
-        //
-        //$area_id = 1;
+        
         
         DB::table('hospitals')->insert([
             
@@ -28,10 +27,9 @@ class HospitalSeeder extends Seeder
             'url' => 'https://acorn-vet.com/',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
-            'area_id' => 1
+            'city_town_village_id' => 1
         ]);
         
-        //$area_id = 2;
         
         DB::table('hospitals')->insert([
             
@@ -42,10 +40,9 @@ class HospitalSeeder extends Seeder
             'url' => 'https://tsuru-ah.com/',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
-            'area_id' => 2
+            'city_town_village_id' => 2
         ]);
         
-        //$area_id = 3;
         
         DB::table('hospitals')->insert([
             
@@ -56,10 +53,9 @@ class HospitalSeeder extends Seeder
             'url' => 'http://www.7651122.com/index.html',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
-            'area_id' => 3
+            'city_town_village_id' => 3
         ]);
         
-        //$area_id = 4;
         
         DB::table('hospitals')->insert([
             
@@ -70,7 +66,7 @@ class HospitalSeeder extends Seeder
             'url' => 'https://www.oji-pet.jp/',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,
-            'area_id' => 4
+            'city_town_village_id' => 4
         ]);
     }
 }

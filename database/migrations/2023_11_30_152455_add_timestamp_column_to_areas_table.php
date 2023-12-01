@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('hospitals', function (Blueprint $table) {
+        Schema::table('areas', function (Blueprint $table) {
             //
-            $table->foreignId('area_id')->constrained(); 
+            $table->timestamps();
         });
     }
 
@@ -26,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('hospitals', function (Blueprint $table) {
+        Schema::table('areas', function (Blueprint $table) {
             //
+            $table->dropTimestamps();
         });
     }
 };
