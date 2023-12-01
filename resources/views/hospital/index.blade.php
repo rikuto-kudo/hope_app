@@ -26,9 +26,6 @@
             <li><a href="profile.html">プロフィール</a></li>
             <li><a href="{{ url('/login') }}">ログイン</a></li> 
         </ul>
-
-        
-
       </nav>
     </header>
   </body>

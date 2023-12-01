@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
-//use Illuminate\Support\Facades\DB;
 use App\Models\Area;
 use App\Models\City_Town_Village;
 use App\Models\Hospital;
@@ -17,7 +16,24 @@ class SearchController extends Controller
     public function getAreas()
     {
         $areas = Area::all();
+        
         return view('hospital.search', compact('areas'));
+    } 
+
+    public function getCity_town_villages(Request $request)
+    {
+            $areaId = $request->input('area');
+            $city_town_villages = City_Town_Village::where('area_id', $areaId)->get();
+            
+            return response()->json(['city_town_villages' =>$city_town_villages]);
+    }
+    
+    public function searchResult(Request $request)
+    {
+        $areaId = $request->input('area');
+        $cityTownVillageId = $request->input('city_town_village');
+        
+        $area = Area::where('');
     }
 
     public function getCityTownVillages(Request $request)

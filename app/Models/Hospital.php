@@ -85,4 +85,10 @@ class Hospital extends Model
         }
     }*/
     
+    /*protected $hospital = 'hospitals';
+    
+    public function city_town_village()
+    {
+        return $this->belongsTo(City_Town_Village::class);
+    }*/
 }
